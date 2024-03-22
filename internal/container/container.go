@@ -13,13 +13,13 @@ type Container struct {
 }
 
 func InjectUserDependencies() *Container {
-	userRepository := memory.NewUserRepository()
-	userUseCase := &usecase.UserInteractor{UserRepository: userRepository}
-	userHandler := &handler.UserHandler{UserUseCase: userUseCase}
+	userRepositoryImpl := memory.NewUserRepository()
+	userUseCaseImpl := &usecase.UserUsecaseImpl{UserRepository: userRepositoryImpl}
+	userHandler := &handler.UserHandler{UserUseCase: userUseCaseImpl}
 
 	return &Container{
-		UserRepository: userRepository,
-		UserUseCase:    userUseCase,
+		UserRepository: userRepositoryImpl,
+		UserUseCase:    userUseCaseImpl,
 		UserHandler:    *userHandler,
 	}
 }

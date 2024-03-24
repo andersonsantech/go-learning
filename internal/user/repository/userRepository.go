@@ -1,4 +1,4 @@
-package usecase
+package repository
 
 import "github.com/andersonsantech/go-learning/internal/user/domain"
 

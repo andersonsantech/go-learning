@@ -17,6 +17,8 @@ func startServer() {
 
 	server := gin.Default()
 
+	server.Use(cors())
+
 	server.POST("/users", func(c *gin.Context) {
 		container.UserHandler.RegisterUser(c.Writer, c.Request)
 	})
@@ -37,4 +39,20 @@ func startServer() {
 		log.Fatal(err)
 	}
 
+}
+
+
+func cors() gin.HandlerFunc {
+    return func(c *gin.Context) {
+        c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+        c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+        c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+        if c.Request.Method == "OPTIONS" {
+            c.AbortWithStatus(204)
+            return
+        }
+
+        c.Next()
+    }
 }

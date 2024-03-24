@@ -2,12 +2,13 @@ package container
 
 import (
 	"github.com/andersonsantech/go-learning/internal/user/delivery/handler"
+	"github.com/andersonsantech/go-learning/internal/user/repository"
 	"github.com/andersonsantech/go-learning/internal/user/repository/memory"
 	"github.com/andersonsantech/go-learning/internal/user/usecase"
 )
 
 type Container struct {
-	UserRepository usecase.UserRepository
+	UserRepository repository.UserRepository
 	UserUseCase    usecase.UserUseCase
 	UserHandler    handler.UserHandler
 }
